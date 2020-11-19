@@ -21,6 +21,7 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import AddIcon from '@material-ui/icons/Add';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import EditIcon from '@material-ui/icons/Edit';
 import {Modal, TextField, Button} from '@material-ui/core';
 import {MuiPickersUtilsProvider, KeyboardDatePicker} from '@material-ui/pickers';
@@ -31,6 +32,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { format } from "date-fns";
 import * as moment from 'moment'
+import { Grid, } from '@material-ui/core';
 import axios from 'axios';
 
 import { baseUrl, usesStyles } from './CommonReusedMaterials';
@@ -236,9 +238,41 @@ export default function EnhancedTable() {
     status: "",
     id: ""
   })
+
+  const [errors, setErrors] = useState({
+    brand: "",
+    model: "",
+    serialNumber: ""
+  });
   
   const handleChange= (event) =>{
     const name = event.target.name;
+
+    // setErrors({
+    //   // brand: '',
+    //   // model: '',
+    //   // serialNumber: ''
+    //   ...errors,
+    //   [name]: event.target.value
+    // });
+
+    if(event.target.name == "brand" && event.target.value === '') {
+      setDisable(event.target.value === '');
+      // setErrors({brand: 'Brand is required!!!'})
+    } else if(event.target.name == "model" && event.target.value === '') {
+      setDisable(event.target.value === '');
+      // setErrors({model: 'Model is required!!!'})
+    } else if(event.target.name == "serialNumber" && event.target.value === '') {
+      setDisable(event.target.value === '');
+      // setErrors({serialNumber: 'Serial Number is required!!!'})
+    } else {
+      setDisable(false);
+    }
+
+    // if((event.target.name == "brand" && event.target.value !== '') && (event.target.name == "model" && event.target.value !== '') && (event.target.name == "serialNumber" && event.target.value !== '')) {
+    //   setDisable(false);
+    // }
+
     setHouseholdAppliance({
       ...householdApplianceSet,
       [name]: event.target.value
@@ -405,17 +439,128 @@ export default function EnhancedTable() {
 
   const [modalInsert, setModalInsert]= useState(false);
 
+  // const handleSubmit = e => {
+  //   // e.preventDefault();
+  //   const name = e.target.name;
+
+  //   console.log("Test");
+
+  //   setErrors({
+  //     // brand: '',
+  //     // model: '',
+  //     // serialNumber: ''
+  //     ...errors,
+  //     [name]: e.target.value
+  //   });
+
+  //   setHouseholdAppliance({
+  //     ...householdApplianceSet,
+  //     [name]: e.target.value
+  //   });
+
+  //   if(e.target.name == "brand" && e.target.value == "") {
+  //     setErrors({brand: 'Brand is required!!!'})
+  //   }
+
+  //   if(e.target.name == "model" && e.target.value == "") {
+  //     setErrors({model: 'Model is required!!!'})
+  //   }
+
+  //   if(e.target.name == "serialNumber" && e.target.value == "") {
+  //     setErrors({serialNumber: 'Serial Number is required!!!'})
+  //   }
+
+
+  //   // if (e.brand = ""){
+  //   //   errors.brand = true;
+  //   //   // restHttpPost();
+  //   //   //   resetForm();
+  //   // }
+  // }
+
+
+
+
+  // const handleChange2= (event) =>{
+  //   const name = event.target.name;
+  //   setErrors({
+  //     // brand: '',
+  //     // model: '',
+  //     // serialNumber: ''
+  //     ...errors,
+  //     [name]: event.target.value
+  //   });
+
+  //   setHouseholdAppliance({
+  //     ...householdApplianceSet,
+  //     [name]: event.target.value
+  //   });
+
+  //   if(event.target.name == "brand" && event.target.value == "") {
+  //     setErrors({brand: 'Brand is required!!!'})
+  //   }
+
+  //   if(event.target.name == "model" && event.target.value == "") {
+  //     setErrors({model: 'Model is required!!!'})
+  //   }
+
+  //   if(event.target.name == "serialNumber" && event.target.value == "") {
+  //     setErrors({serialNumber: 'Serial Number is required!!!'})
+  //   }
+
+  //   console.log(event.target.name);
+
+  //   // if(event.target.value == "") {
+  //   //   setErrors({brand: 'Brand is required!!!'})
+  //   //   setErrors({model: 'Model is required!!!'})
+  //   // }
+
+    
+
+  // }
+
+  // const [inputVal, setInputVal] = useState('')
+  const [disable, setDisable] = useState(true);
+
+
   const modalBodyInsert=(
     <div className={styleUses.modal}>
         <h3>Create new Household Appliance</h3>
-        <TextField className={styleUses.inputMaterial} label="Brand" name="brand" onChange={handleChange}/>
+        <TextField 
+            className={styleUses.inputMaterial} 
+            label="Brand" 
+            name="brand"
+            onChange={handleChange}
+            // onChange={handleChange}
+            required
+            // error={Boolean(errors?.brand)}
+            // helperText={(errors?.brand)}
+            // value={inputVal} onChange={e => setInputVal(e.target.value)}
+        />
         <br />
-        <TextField className={styleUses.inputMaterial} label="Model" name="model" onChange={handleChange}/>          
+        <TextField 
+            className={styleUses.inputMaterial} 
+            label="Model" 
+            name="model" 
+            onChange={handleChange}
+            required
+            // error={Boolean(errors?.model)}
+            // helperText={(errors?.model)}
+        />          
         <br />
-        <TextField className={styleUses.inputMaterial} label="Serial Number" name="serialNumber" onChange={handleChange}/>
+        <TextField 
+            className={styleUses.inputMaterial} 
+            label="Serial Number" 
+            name="serialNumber"
+            onChange={handleChange}
+            required
+            // error={Boolean(errors?.serialNumber)}
+            // helperText={(errors?.serialNumber)}
+        />
+        {/* <TextField name="email" helperText={errors.email ? intl.formatMessage({ id: errors.email.message }) : ''} error={errors.email ? true : false} /> */}
         <br /><br />
         <div align="right">
-            <Button color="primary" onClick={()=>restHttpPost()}>Create</Button>
+            <Button color="primary" disabled={disable} onClick={()=>restHttpPost()}>Create</Button>
             <Button onClick={()=>setModalCreating()}>Cancel</Button>
         </div>
     </div>
@@ -429,7 +574,7 @@ export default function EnhancedTable() {
 
         // var formattedDate = format(response.data.dateBought, "MMMM do, yyyy H:mma");
         // console.log(formattedDate);
-        console.log(response.data);
+        // console.log(response.data);
         setModalCreating();
         // window.location.reload();
     }).catch(error=>{
@@ -448,7 +593,7 @@ export default function EnhancedTable() {
     .then(response=>{
       setData(response.data);
       searchModalBox();
-      console.log(response.data)
+      // console.log(response.data)
     }).catch(error=>{
       console.log(error);
     })
@@ -483,11 +628,19 @@ export default function EnhancedTable() {
             <AddIcon />
           </IconButton>
         </Tooltip> 
+
         <Tooltip title="Search filter">
           <IconButton aria-label="search filter" onClick={()=>searchModalBox()}>
             <FilterListIcon />
           </IconButton>
         </Tooltip>   
+
+        <Tooltip title="Refresh the table listing">          
+          <IconButton aria-label="add" className={styleUses.addButton} onClick={()=>restHttpGetAll()}>
+            <RefreshIcon />
+          </IconButton>
+        </Tooltip> 
+
         <TableContainer>
           <Table
             className={styleUses.table}
