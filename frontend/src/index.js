@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import EnhancedTable from './EnhancedTable';
 import reportWebVitals from './reportWebVitals';
+import EnhancedTable from './EnhancedTable';
 
 ReactDOM.render(
   <React.StrictMode>
