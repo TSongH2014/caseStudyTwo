@@ -10,8 +10,12 @@ Front-end:
 - VS Code;
 
 Back-end:
-- Java 11;
+- Java 8/11;
 - Spring Boot 2, Spring Data JPA;
 - Spring Web MVC;
 - Spring REST;
 - PostgreSQL;
+
+Front-end hosted on Azure: http://capgeminicasestudy22.azurewebsites.net/
+
+Back-end hosted on AWS: http://capgeminicasestudytwo2two-env.eba-ije556pw.us-east-2.elasticbeanstalk.com/householdappliances
