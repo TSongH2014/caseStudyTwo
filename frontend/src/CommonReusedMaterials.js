@@ -2,7 +2,8 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 
 // Common stuff
 // export const baseUrl = "http://localhost:8080/householdappliances";
-export const baseUrl = "https://capgeminicasestudytwo2two-env.eba-ije556pw.us-east-2.elasticbeanstalk.com/householdappliances";
+// export const baseUrl = "https://capgeminicasestudytwo2two-env.eba-ije556pw.us-east-2.elasticbeanstalk.com/householdappliances";
+export const baseUrl = "https://api.tingsonghui.com/householdappliances"
 
 // Common stuff
 export const usesStyles = makeStyles((theme) => ({
