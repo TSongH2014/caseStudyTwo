@@ -20,10 +20,10 @@ Back-end:
 
 Front-end hosted on Azure: http://capgeminicasestudy22.azurewebsites.net/
 
-Updated (URL link) Front-end hosted on Azure: https://householdappliances.tingsonghui.com/
+--> Updated (URL link) Front-end hosted on Azure: https://householdappliances.tingsonghui.com/
 
 Back-end hosted on AWS: http://capgeminicasestudytwo2two-env.eba-ije556pw.us-east-2.elasticbeanstalk.com/householdappliances
 
-Updated (URL link) Back-end hosted on AWS: https://api.tingsonghui.com/householdappliances
+--> Updated (URL link) Back-end hosted on AWS: https://api.tingsonghui.com/householdappliances
 
 Domain name hosted by Godaddy.
