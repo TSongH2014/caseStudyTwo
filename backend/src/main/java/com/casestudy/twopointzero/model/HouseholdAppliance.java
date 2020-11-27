@@ -11,7 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -39,10 +38,7 @@ public class HouseholdAppliance {
 	@Column(name = "date_bought")
 	private Date dateBought;
 	
-//	@Column(name = "status", columnDefinition = "String")
-//	@Column(name = "status", columnDefinition = "varchar(255) default 'New'")
 	@Column(name = "status")
-//	@ColumnDefault("New")
 	private String status;
 	
 	public HouseholdAppliance() {
@@ -70,6 +66,10 @@ public class HouseholdAppliance {
 		this.status = status;
 	}
 	
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -104,7 +104,5 @@ public class HouseholdAppliance {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
 	
 }

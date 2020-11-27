@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.casestudy.twopointzero.model.HouseholdAppliance;
-import com.casestudy.twopointzero.repository.HouseholdApplianceRepository;
+import com.casestudy.twopointzero.service.HouseholdApplianceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,7 +35,7 @@ public class HouseholdApplianceControllerTest {
 	private MockMvc mockMvc;
 	
 	@MockBean
-	private HouseholdApplianceRepository householdApplianceRepository;
+	private HouseholdApplianceService householdApplianceService;
 	
 	@Autowired
     private ObjectMapper objectMapper;
@@ -58,7 +58,7 @@ public class HouseholdApplianceControllerTest {
 		householdAppliances.add(new HouseholdAppliance("HP", "Envy 13", "283-834-432-567-673", date , "New"));
 		householdAppliances.add(new HouseholdAppliance("DELL", "XPS 13", "923-834-532-667-413", date , "New"));
 		
-		Mockito.when(householdApplianceRepository.findAll()).thenReturn(householdAppliances);
+		Mockito.when(householdApplianceService.findAll()).thenReturn(householdAppliances);
 		
 		String url = "/householdappliances";
 		
